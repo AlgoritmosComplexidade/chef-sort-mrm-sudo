@@ -22,7 +22,7 @@ void bubbleSortStrings(char arr[][50], int n, int *comparacoes, int *trocas) {
             // Incrementa o contador de comparações
             (*comparacoes)++;
 
-            // Compara as strings lexicograficamente. Se arr[j] for maior que arr[j+1], strcmp retorna > 0
+            // Compara as strings. Se arr[j] for maior que arr[j+1], strcmp retorna > 0
             if (strcmp(arr[j], arr[j+1]) > 0) {
                 // Realiza a troca das strings usando strcpy
                 strcpy(temp, arr[j]);
@@ -58,9 +58,9 @@ int main() {
 
     printf("--- Nivel Novato: Organizando a Despensa ---\n");
     printf("Lista ANTES da ordenacao:\n");
-    for (int i = 0; i < num_ingredientes; i++) {
+    	for (int i = 0; i < num_ingredientes; i++) {
         printf("  - %s\n", ingredientes[i]);
-    }
+   	 }
 
     // Chamada da funcao bubbleSortStrings passando os endereços das variáveis de contagem (&)
     bubbleSortStrings(ingredientes, num_ingredientes, &comparacoes, &trocas);
