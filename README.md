@@ -20,16 +20,98 @@ Nesta primeira fase, o jogador chega à cozinha e encontra a bancada em completo
 
 ### ⚙️ Funcionalidades e Requisitos:
 - **Estrutura de Dados:** Utilizar um vetor bidimensional de `char` (array de strings) fixo, sem necessidade de entrada do usuário via `scanf`.
+- char ingredientes[5][50] = {"Tomate", "Cebola", "Alho", "Cenoura", "Batata"};
+
 - **Algoritmo:** Implementar o algoritmo **Bubble Sort**.
+- void bubbleSortStrings(char arr[][50], int n, int *comparacoes, int *trocas) {
+    int i, j;
+    char temp[50]; // Variável auxiliar precisa ser um array de char para armazenar a string temporariamente
+    int trocou;
+
+    for (i = 0; i < n - 1; i++) {
+        trocou = 0;
+
+        for (j = 0; j < n - i - 1; j++) {
+            // Incrementa o contador de comparações
+            (*comparacoes)++;
+
+            // Compara as strings lexicograficamente. Se arr[j] for maior que arr[j+1], strcmp retorna > 0
+            if (strcmp(arr[j], arr[j+1]) > 0) {
+                // Realiza a troca das strings usando strcpy
+                strcpy(temp, arr[j]);
+                strcpy(arr[j], arr[j+1]);
+                strcpy(arr[j+1], temp);
+
+                // Incrementa o contador de trocas e sinaliza que houve mudança
+                (*trocas)++;
+                trocou = 1;
+            }
+        }
+        // Se nenhuma troca ocorreu nesta passada, o vetor já está ordenado
+        if (!trocou) {
+            break;
+        }
+    }
+}
+int main() {
+    printf("=== BEM-VINDO AO CHEF SORT ===\n\n");
+
+    // ---------------------------------------------------------
+    // ÁREA DO NÍVEL NOVATO (Despensa / Bubble Sort)
+
+    // ---------------------------------------------------------
+    
+    char ingredientes[5][50] = {"Tomate", "Cebola", "Alho", "Cenoura", "Batata"};
+    int num_ingredientes = 5;
+    int comparacoes = 0;
+    int trocas = 0;
+
+    printf("--- Nivel Novato: Organizando a Despensa ---\n");
+    printf("Lista ANTES da ordenacao:\n");
+    	for (int i = 0; i < num_ingredientes; i++) {
+        printf("  - %s\n", ingredientes[i]);
+   	 }
+
+    // Chamada da funcao bubbleSortStrings passando os endereços das variáveis de contagem (&)
+    bubbleSortStrings(ingredientes, num_ingredientes, &comparacoes, &trocas);
+
+    printf("\nLista DEPOIS da ordenacao:\n");
+    for (int i = 0; i < num_ingredientes; i++) {
+        printf("  - %s\n", ingredientes[i]);
+    }
+
+    // Exibição das estatísticas do algoritmo
+    printf("\nEstatisticas de Desempenho:\n");
+    printf("-> Comparacoes realizadas: %d\n", comparacoes);
+    printf("-> Trocas realizadas: %d\n", trocas);
+
+    return 0;
+}
+
 - **Métricas:** O algoritmo deve contabilizar e exibir o total de *comparações* realizadas e o total de *trocas* efetuadas.
+ // Exibição das estatísticas do algoritmo
+    printf("\nEstatisticas de Desempenho:\n");
+    printf("-> Comparacoes realizadas: %d\n", comparacoes);
+    printf("-> Trocas realizadas: %d\n", trocas);
 
 ### 📥 Entrada e 📤 Saída de Dados:
 - **Entrada:** Vetor fixo no código (Ex: `{"Tomate", "Cebola", "Alho", "Cenoura"}`).
 - **Saída:** O sistema deverá imprimir:
   - A lista de ingredientes ANTES da ordenação.
+  -  printf("Lista ANTES da ordenacao:\n");
+    	for (int i = 0; i < num_ingredientes; i++) {
+        printf("  - %s\n", ingredientes[i]);
+   	 }
   - A lista de ingredientes DEPOIS da ordenação.
+  -  printf("\nLista DEPOIS da ordenacao:\n");
+    for (int i = 0; i < num_ingredientes; i++) {
+        printf("  - %s\n", ingredientes[i]);
+    }
   - O total de comparações realizadas.
+  - printf("-> Comparacoes realizadas: %d\n", comparacoes);
   - O total de trocas efetuadas.
+  -  printf("-> Trocas realizadas: %d\n", trocas);
+
 
 ---
 
